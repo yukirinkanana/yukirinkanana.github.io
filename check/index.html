@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RinnAI 卡密查询</title>
+  <meta name="description" content="RinnAI 卡密查询">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260415222656">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand brand-home" href="/">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" role="presentation">
+            <rect x="8" y="9" width="24" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="3"></rect>
+            <path d="M8 16h24c4 0 7 3 7 7v11c0 4-3 7-7 7H12c-2.2 0-4-1.8-4-4V20c0-2.2 1.8-4 4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+            <circle cx="31" cy="27" r="2.8" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span class="brand-text">RinnAI 查询中心</span>
+      </a>
+      <div class="topbar-actions">
+        <span class="topbar-pill muted">微信 LacieYu1507</span>
+        <a class="topbar-pill" href="https://m.tb.cn/h.iLXgTNz?tk=fpv25gER79I" target="_blank" rel="noopener noreferrer">闲鱼店铺</a>
+        <a class="topbar-link" href="/?v=20260415222656">返回充值中心</a>
+      </div>
+    </header>
+
+    <main class="surface">
+      <section class="hero">
+        <h1>卡密查询</h1>
+        <p>批量查询已充值卡密，结果自动整理为一张清晰表格。</p>
+      </section>
+
+      <section class="status-line">
+        <span id="check-result-tag" class="status-badge neutral">等待查询</span>
+        <p id="check-message">输入卡密后开始查询。</p>
+      </section>
+
+      <form id="check-form" class="workflow-form" novalidate>
+        <div class="field-grid-query">
+          <div class="field field-grow">
+            <span>说明</span>
+            <p id="check-product-help" class="plain-text">支持换行、空格和逗号分隔，系统会自动去重。</p>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>卡密列表</span>
+          <textarea id="check-card-codes" class="control textarea" rows="12" placeholder="请输入要查询的卡密"></textarea>
+        </label>
+
+        <div class="button-row split">
+          <div class="button-group">
+            <button id="check-clear" class="button ghost" type="button">清空</button>
+            <button id="check-copy-used" class="button ghost" type="button" disabled>复制已使用</button>
+            <button id="check-copy-unused" class="button ghost" type="button" disabled>复制未使用</button>
+          </div>
+          <button id="check-submit" class="button primary" type="submit">开始查询</button>
+        </div>
+      </form>
+
+      <section id="check-summary" class="summary-strip hidden">
+        <article class="summary-strip-item">
+          <span>总数</span>
+          <strong id="check-total-count">0</strong>
+        </article>
+        <article class="summary-strip-item">
+          <span>已使用</span>
+          <strong id="check-used-count">0</strong>
+        </article>
+        <article class="summary-strip-item">
+          <span>未使用</span>
+          <strong id="check-unused-count">0</strong>
+        </article>
+        <article class="summary-strip-item">
+          <span>处理中</span>
+          <strong id="check-processing-count">0</strong>
+        </article>
+        <article class="summary-strip-item">
+          <span>无效</span>
+          <strong id="check-invalid-count">0</strong>
+        </article>
+      </section>
+
+      <div class="table-shell">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>卡密</th>
+              <th>状态</th>
+              <th>使用邮箱</th>
+              <th>充值时间</th>
+            </tr>
+          </thead>
+          <tbody id="check-table-body">
+            <tr>
+              <td colspan="4" class="table-empty">暂无查询结果</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="footer-note">© 2026 RinnAI</footer>
+  </div>
+
+  <script src="/config.js?v=20260415222656"></script>
+  <script src="/assets/check.js?v=20260415222656"></script>
+</body>
+</html>
+

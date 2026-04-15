@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RinnAI 充值中心</title>
+  <meta name="description" content="RinnAI 充值中心">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260415222656">
+</head>
+<body>
+  <div class="page-shell home-shell">
+    <header class="topbar topbar-home">
+      <a class="brand brand-home" href="/">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" role="presentation">
+            <rect x="8" y="9" width="24" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="3"></rect>
+            <path d="M8 16h24c4 0 7 3 7 7v11c0 4-3 7-7 7H12c-2.2 0-4-1.8-4-4V20c0-2.2 1.8-4 4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+            <circle cx="31" cy="27" r="2.8" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span class="brand-text">RinnAI 充值中心</span>
+      </a>
+      <div class="topbar-actions">
+        <span class="topbar-pill muted">微信 LacieYu1507</span>
+        <a class="topbar-pill warn" href="https://m.tb.cn/h.iLXgTNz?tk=fpv25gER79I" target="_blank" rel="noopener noreferrer">闲鱼店铺</a>
+        <a class="topbar-link" href="/check/?v=20260415222656">查询已充值记录 →</a>
+      </div>
+    </header>
+
+    <main class="panel-card surface">
+      <section class="steps steps-modern" aria-label="充值步骤">
+        <button class="step-chip step-chip-modern is-active" type="button" data-step="1">
+          <span class="step-chip-index">1</span>
+          <span class="step-chip-label">验证卡密</span>
+        </button>
+        <button class="step-chip step-chip-modern" type="button" data-step="2">
+          <span class="step-chip-index">2</span>
+          <span class="step-chip-label">获取 Token</span>
+        </button>
+        <button class="step-chip step-chip-modern" type="button" data-step="3">
+          <span class="step-chip-index">3</span>
+          <span class="step-chip-label">确认充值</span>
+        </button>
+        <button class="step-chip step-chip-modern" type="button" data-step="4">
+          <span class="step-chip-index">4</span>
+          <span class="step-chip-label">处理结果</span>
+        </button>
+      </section>
+
+      <div class="panel-state-row">
+        <span id="result-tag" class="status-badge neutral">等待操作</span>
+      </div>
+
+      <section class="intro-block">
+        <h1>验证卡密</h1>
+        <p>输入卡密后继续下一步。</p>
+      </section>
+
+      <form id="workflow-form" class="workflow-form workflow-form-home" novalidate>
+        <section class="panel-block active" data-step="1">
+          <label class="field field-card">
+            <span>卡密</span>
+            <input id="card-code" class="control" type="text" autocomplete="off" placeholder="请输入卡密">
+          </label>
+
+          <div class="card-status-box">
+            <span id="card-status-badge" class="mini-badge neutral">未验证</span>
+            <p id="card-status-text">请输入卡密后点击验证。</p>
+          </div>
+
+          <button id="verify-card-button" class="button primary primary-action" type="button">验证卡密 →</button>
+        </section>
+
+        <section class="panel-block" data-step="2">
+          <div class="token-link-row">
+            <a id="token-open-link" class="inline-link" href="#" target="_blank" rel="noopener noreferrer">打开 Token 页面</a>
+          </div>
+
+          <label class="field">
+            <span>Token JSON</span>
+            <textarea id="token" class="control textarea" rows="10" placeholder="粘贴完整 Token JSON" spellcheck="false" disabled></textarea>
+          </label>
+
+          <div id="account-preview" class="account-preview hidden">
+            <div class="inline-note">
+              <span id="token-status-badge" class="mini-badge neutral">未识别</span>
+              <p id="account-email">未识别到账号</p>
+            </div>
+            <p id="account-meta" class="meta-text">需要包含 email 和 account.id。</p>
+          </div>
+
+          <div class="button-row">
+            <button id="token-prev-button" class="button ghost" type="button">上一步</button>
+            <button id="token-next-button" class="button primary" type="button" disabled>下一步</button>
+          </div>
+        </section>
+
+        <section class="panel-block" data-step="3">
+          <div id="review-inline-summary" class="summary-grid"></div>
+
+          <div class="button-row split">
+            <div class="button-group">
+              <button id="review-prev-button" class="button ghost" type="button">上一步</button>
+              <button id="clear-button" class="button ghost" type="button">清空</button>
+            </div>
+            <button id="start-button" class="button primary" type="submit" disabled>确认充值</button>
+          </div>
+        </section>
+
+        <section class="panel-block" data-step="4">
+          <div class="summary-grid result-grid">
+            <article class="summary-item">
+              <span>卡密</span>
+              <strong id="result-value-card">-</strong>
+            </article>
+            <article class="summary-item">
+              <span>邮箱</span>
+              <strong id="result-value-email">-</strong>
+            </article>
+            <article class="summary-item">
+              <span>Account ID</span>
+              <strong id="result-value-account">-</strong>
+            </article>
+            <article class="summary-item">
+              <span>状态</span>
+              <strong id="result-value-state">-</strong>
+            </article>
+          </div>
+
+          <div id="result-log" class="result-log">
+            <p>提交后这里会显示处理进度。</p>
+          </div>
+
+          <div class="button-row end">
+            <button id="restart-workflow-button" class="button primary hidden" type="button">重新开始</button>
+          </div>
+        </section>
+      </form>
+    </main>
+
+    <footer class="footer-note">© 2026 RinnAI 充值中心。提交前请核对卡密与 Token，最终解释权归 RinnAI 所有。</footer>
+  </div>
+
+  <script src="/config.js?v=20260415222656"></script>
+  <script src="/assets/app.js?v=20260415222656"></script>
+</body>
+</html>
+
